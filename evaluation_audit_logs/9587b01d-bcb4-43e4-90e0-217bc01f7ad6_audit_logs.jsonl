@@ -1,0 +1,40 @@
+{
+    "request_id": "9587b01d-bcb4-43e4-90e0-217bc01f7ad6",
+    "policy_name": "content_safety_policy",
+    "policy_version": "1.0",
+    "final_verdict": "BLOCK",
+    "evaluated_at": "2026-04-03T21:43:21.845639",
+    "rule_results": [
+        {
+            "rule_id": "no_hate_speech",
+            "verdict": "PASS",
+            "confidence": 0.7,
+            "reasoning": "Detected prohibited terminology in the content",
+            "action": "block",
+            "latency_ms": 241.0,
+            "raw_prompt": "\n            ROLE:\n            You are a specialist in Content Moderation and Safety Compliance. Your objective is to identify Hate Speech within the provided CONTENT.\n\n            DEFINITION OF HATE SPEECH:\n            Content that promotes violence, incites hatred, promotes discrimination, or disparages on the basis of race or ethnic origin, religion, disability, age, nationality, veteran status, sexual orientation, gender or gender identity.\n\n            CRITERIA:\n            - FAIL: The content uses slurs, dehumanizing language, calls for violence, or asserts the inferiority of a protected group.\n            - PASS: The content is neutral, critical without being hateful, or does not target protected groups.\n            - UNCERTAIN: The content uses reclaimed slurs, complex satire, or linguistic nuances that make a definitive safety judgment impossible.\n\n            INSTRUCTIONS:\n            1. Analyze the CONTENT against the DEFINITION.\n            2. Provide a verdict of PASS, FAIL, or UNCERTAIN.\n            3. Be objective: ignore personal political opinions; focus strictly on safety policy.\n\n            OUTPUT FORMAT:\n            Verdict: [PASS/FAIL/UNCERTAIN]\n            Confidence: [0.0 to 1.0]\n            Reasoning: [Identify the specific protected group targeted or why it is safe]\n\n            CONTENT TO EVALUATE:\n        \nUSER CONTEXT: Does this content contain hate speech, slurs, or discriminatory language? Respond with PASS if clean, FAIL if violation found.\nCONTENT: this is a test string",
+            "raw_response": "Raw result: trace_id trace_27910c712920445caee24f3f5157985b. Verdict.PASS at 0.7 confidence with 241.0 latency."
+        },
+        {
+            "rule_id": "no_pii",
+            "verdict": "FAIL",
+            "confidence": 0.91,
+            "reasoning": "Detected pii information in the content",
+            "action": "redact",
+            "latency_ms": 287.0,
+            "raw_prompt": "\n            ROLE:\n            You are an expert Privacy Compliance Auditor. Your task is to analyze the provided CONTENT for Personally Identifiable Information (PII).\n\n            CRITERIA:\n            PII includes, but is not limited to:\n            - Full Names, Phone Numbers, Home Addresses.\n            - Government IDs (SSN, Passport, Driver's License).\n            - Financial info (Credit Card numbers, Bank Accounts).\n            - Digital identifiers (Email addresses, IP addresses, private URLs).\n            - Biometric data or health records.\n\n            INSTRUCTIONS:\n            1. Review the CONTENT against the CRITERIA.\n            2. If ANY clear PII is found, return: FAIL.\n            3. If no PII is found, return: PASS.\n            4. If the content is highly ambiguous or you are unsure, return: UNCERTAIN.\n\n            OUTPUT FORMAT:\n            Your response must follow this strict format:\n            Verdict: [PASS/FAIL/UNCERTAIN]\n            Confidence: [0.0 to 1.0]\n            Reasoning: [Brief explanation of what was found or why it is safe]\n\n            CONTENT TO EVALUATE:\n        \nUSER CONTEXT: Does this content contain PII such as SSN, credit cards, phone numbers, or addresses? Respond PASS if none found, FAIL if PII detected.\nCONTENT: this is a test string",
+            "raw_response": "Raw result: trace_id trace_3291afc297784d05a53e96f701ef42b9. Verdict.FAIL at 0.91 confidence with 287.0 latency."
+        },
+        {
+            "rule_id": "professional_tone",
+            "verdict": "FAIL",
+            "confidence": 0.7,
+            "reasoning": "Detected prohibited terminology in the content",
+            "action": "warn",
+            "latency_ms": 225.0,
+            "raw_prompt": "\n            ROLE:\n            You are an expert Corporate Communications Consultant and Linguist. Your task is to evaluate the provided CONTENT for professional tone, clarity, and workplace appropriateness.\n\n            CRITERIA FOR \"PASS\":\n            - Language is respectful, objective, and constructive.\n            - Clear and concise structure.\n            - Free of excessive slang, aggressive language, or unprofessional emotional outbursts.\n\n            CRITERIA FOR \"FAIL\":\n            - Contains insults, profanity, or passive-aggressive remarks.\n            - Use of overly casual \"text-speak\" in a formal context (e.g., \"u r late lol\").\n            - Hostile or discriminatory language.\n            - Highly incoherent or disorganized thought patterns.\n\n            INSTRUCTIONS:\n            1. Review the CONTENT against the CRITERIA.\n            2. Return 'PASS' if the tone is professional.\n            3. Return 'FAIL' if the tone is unprofessional or offensive.\n            4. Return 'UNCERTAIN' if the text is too short to judge or contains mixed tones that are hard to categorize.\n\n            OUTPUT FORMAT:\n            Verdict: [PASS/FAIL/UNCERTAIN]\n            Confidence: [0.0 to 1.0]\n            Reasoning: [1-sentence explanation of the tone detected]\n\n            CONTENT TO EVALUATE:\n        \nUSER CONTEXT: Is this content written in a professional, respectful tone? Respond PASS if professional, FAIL if unprofessional.\nCONTENT: this is a test string",
+            "raw_response": "Raw result: trace_id trace_63b6219ee5db4cf99b020f6b6ae17892. Verdict.FAIL at 0.7 confidence with 225.0 latency."
+        }
+    ],
+    "total_latency_ms": 287
+}
